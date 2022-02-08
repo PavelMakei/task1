@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+
+        targetNamespace="http://www.itacademy.by/makei/tariffs"
+        xmlns:tns="http://www.itacademy.by/makei/tariffs"
+        elementFormDefault="qualified">
+
+    <element name="tariffs">
+        <complexType>
+            <sequence>
+                <element ref="tns:tariff" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="tariff" type="tns:tariff" abstract="true"/>
+    <element name="unlimited-tariff" type="tns:unlimitedTariff" substitutionGroup="tns:tariff"/>
+    <element name="limited-tariff" type="tns:limitedTariff" substitutionGroup="tns:tariff"/>
+
+    <complexType name="tariff">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="year" type="gYear"/>
+            <element name="operator-name" type="string"/>
+            <element name="payroll" type="decimal"/>
+            <element name="call-prices" type="tns:CallPrices"/>
+            <element name="sms-price" type="decimal"/>
+            <element name="parameters" type="tns:parameters"/>
+        </sequence>
+        <attribute name="tariff-id" type="tns:tariff-id" use="required"/>
+        <attribute name="title" use="optional" type="string"/>
+    </complexType>
+
+    <complexType name="unlimitedTariff">
+        <complexContent>
+            <extension base="tns:tariff">
+                <sequence>
+                    <element name="unlimited-tariff-parameters" type="tns:unlimitedTariffParameters"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="limitedTariff">
+        <complexContent>
+            <extension base="tns:tariff">
+                <sequence>
+                    <element name="limited-tariff-parameters" type="tns:limitedTariffParameters"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="tariff-id">
+        <restriction base="ID">
+            <pattern value="\w{2}\d{2,5}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="operator-name">
+        <restriction base="string">
+            <enumeration value="A1"/>
+            <enumeration value="MTC"/>
+            <enumeration value="Life"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="payroll">
+        <restriction base="unsignedInt">
+            <enumeration value="0"/>
+            <enumeration value="999"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="CallPrices">
+        <sequence>
+            <element name="inside-network-calls" type="decimal"/>
+            <element name="other-network-calls" type="decimal"/>
+            <element name="wired-line-calls" type="decimal"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="sms-price">
+        <restriction base="unsignedInt">
+            <enumeration value="0"/>
+            <enumeration value="999"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="parameters">
+        <sequence>
+            <element name="have-a-favorite-number" type="string"/>
+            <element name="tariffing" type="string"/>
+            <element name="tariff-connection-fee" type="string"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="unlimitedTariffParameters">
+        <restriction base="string">
+            <enumeration value="unlimited data"/>
+            <enumeration value="personal manager"/>
+            <enumeration value="connection tariff fee(0 byn)"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="limitedTariffParameters">
+        <restriction base="string">
+            <enumeration value="tariffing(12-sec,minute)"/>
+            <enumeration value="included free data gb"/>
+            <enumeration value="additional-favorite-number"/>
+        </restriction>
+    </simpleType>
+</schema>

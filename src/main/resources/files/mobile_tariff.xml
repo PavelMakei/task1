@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tariffs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.itacademy.by/makei/tariffs"
+         xsi:schemaLocation="http://www.itacademy.by/makei/tariffs mobile_tariff.xsd">
+
+    <unlimited-tariff tariff-id="ab01" title="business class">
+        <name>business tariff</name>
+        <year>2022</year>
+        <operator-name>a1</operator-name>
+        <payroll>131.42</payroll>
+        <call-prices>
+            <inside-network-calls>1.1</inside-network-calls>
+            <other-network-calls>2.2</other-network-calls>
+            <wired-line-calls>3.3</wired-line-calls>
+        </call-prices>
+        <sms-price>4</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>12-second,minute</tariffing>
+            <tariff-connection-fee>0-n byn</tariff-connection-fee>
+        </parameters>
+        <unlimited-tariff-parameters>unlimited data</unlimited-tariff-parameters>
+    </unlimited-tariff>
+
+    <unlimited-tariff tariff-id="la02" >
+        <name>"business unlimited"</name>
+        <year>2022</year>
+        <operator-name>life</operator-name>
+        <payroll>10.90</payroll>
+        <call-prices>
+            <inside-network-calls>0.0</inside-network-calls>
+            <other-network-calls>0.0</other-network-calls>
+            <wired-line-calls>0.0</wired-line-calls>
+        </call-prices>
+        <sms-price>1</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>12-second,minute</tariffing>
+            <tariff-connection-fee>0-n byn</tariff-connection-fee>
+        </parameters>
+        <unlimited-tariff-parameters>personal manager</unlimited-tariff-parameters>
+    </unlimited-tariff>
+
+    <unlimited-tariff tariff-id="mt01" title="business unlimited">
+        <name>"business unlimited"</name>
+        <year>2022</year>
+        <operator-name>mts</operator-name>
+        <payroll>10.90</payroll>
+        <call-prices>
+            <inside-network-calls>0.0</inside-network-calls>
+            <other-network-calls>0.0</other-network-calls>
+            <wired-line-calls>0.0</wired-line-calls>
+        </call-prices>
+        <sms-price>1</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>12-second,minute</tariffing>
+            <tariff-connection-fee>0-n byn</tariff-connection-fee>
+        </parameters>
+        <unlimited-tariff-parameters>connection tariff fee(0 byn)</unlimited-tariff-parameters>
+    </unlimited-tariff>
+
+    <limited-tariff tariff-id="mt02" title="start">
+        <name>"start"</name>
+        <year>2022</year>
+        <operator-name>mts</operator-name>
+        <payroll>15.90</payroll>
+        <call-prices>
+            <inside-network-calls>0.0</inside-network-calls>
+            <other-network-calls>0.1089</other-network-calls>
+            <wired-line-calls>0.1089</wired-line-calls>
+        </call-prices>
+        <sms-price>1</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>12-second,minute</tariffing>
+            <tariff-connection-fee>0-n byn</tariff-connection-fee>
+        </parameters>
+        <limited-tariff-parameters>additional-favorite-number</limited-tariff-parameters>
+    </limited-tariff>
+
+    <limited-tariff tariff-id="mt03" title="start+">
+        <name>"start+"</name>
+        <year>2022</year>
+        <operator-name>mts</operator-name>
+        <payroll>19.99</payroll>
+        <call-prices>
+            <inside-network-calls>0.0</inside-network-calls>
+            <other-network-calls>0.1089</other-network-calls>
+            <wired-line-calls>0.1089</wired-line-calls>
+        </call-prices>
+        <sms-price>1</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>12-second</tariffing>
+            <tariff-connection-fee>10-n byn</tariff-connection-fee>
+        </parameters>
+        <limited-tariff-parameters>additional-favorite-number</limited-tariff-parameters>
+    </limited-tariff>
+
+    <limited-tariff tariff-id="mt04" title="start++">
+        <name>"start+"</name>
+        <year>2022</year>
+        <operator-name>mts</operator-name>
+        <payroll>21.99</payroll>
+        <call-prices>
+            <inside-network-calls>0.0</inside-network-calls>
+            <other-network-calls>0.889</other-network-calls>
+            <wired-line-calls>0.889</wired-line-calls>
+        </call-prices>
+        <sms-price>1</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>12-second</tariffing>
+            <tariff-connection-fee>15-n byn</tariff-connection-fee>
+        </parameters>
+        <limited-tariff-parameters>tariffing(12-sec,minute)</limited-tariff-parameters>
+    </limited-tariff>
+
+    <limited-tariff tariff-id="la04" title="sheik">
+        <name>"sheik"</name>
+        <year>2022</year>
+        <operator-name>life</operator-name>
+        <payroll>12.99</payroll>
+        <call-prices>
+            <inside-network-calls>0.0</inside-network-calls>
+            <other-network-calls>0.889</other-network-calls>
+            <wired-line-calls>0.889</wired-line-calls>
+        </call-prices>
+        <sms-price>1</sms-price>
+        <parameters>
+            <have-a-favorite-number>0-n</have-a-favorite-number>
+            <tariffing>1 second</tariffing>
+            <tariff-connection-fee>0-n byn</tariff-connection-fee>
+        </parameters>
+        <limited-tariff-parameters>tariffing(12-sec,minute)</limited-tariff-parameters>
+    </limited-tariff>
+
+</tariffs>
