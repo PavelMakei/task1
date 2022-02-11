@@ -1,8 +1,5 @@
 package by.makei.tariff.entity;
 
-import by.makei.tariff.exception.CustomException;
-
-import java.time.Year;
 import java.util.Objects;
 
 public class LimitedTariff extends Tariff{
@@ -24,7 +21,7 @@ public class LimitedTariff extends Tariff{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         LimitedTariff that = (LimitedTariff) o;
-        return Objects.equals(limitedTariffParameters, that.limitedTariffParameters);
+        return limitedTariffParameters.equals(that.limitedTariffParameters);
     }
 
     @Override

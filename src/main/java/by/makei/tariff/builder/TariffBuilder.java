@@ -28,6 +28,9 @@ public abstract class TariffBuilder {
     public static final String UNLIMITED_TARIFF = "unlimited-tariff";
     public static final String UNLIMITED_TARIFF_PARAMETERS = "unlimited-tariff-parameters";
     public static final String LIMITED_TARIFF_PARAMETERS = "limited-tariff-parameters";
+    public static final String TITLE = "title";
+    public static final String TITLE_BY_DEFAULT = "title";
+
 
     protected Set<Tariff> tariffSet;
     protected CustomFileUtil customFileUtil;

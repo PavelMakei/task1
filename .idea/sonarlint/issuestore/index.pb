@@ -1,3 +1,3 @@
 
-g
-7src/main/java/by/makei/tariff/entity/LimitedTariff.java,9\8\9849c1dd3474906d94047bb1d79997b2bc7741b5
+o
+?src/main/java/by/makei/tariff/factory/TariffBuilderFactory.java,0\c\0c42eca426a358d32ed9b207947b990608cd4e18

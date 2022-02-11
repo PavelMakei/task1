@@ -36,7 +36,7 @@ public class DomTariffBuilder extends TariffBuilder {
             Document document = documentBuilder.parse(file);
             document.getDocumentElement().normalize();
 
-            NodeList tariffList = document.getElementsByTagName("unlimited-tariff");
+            NodeList tariffList = document.getElementsByTagName(UNLIMITED_TARIFF);
             for (int i = 0; i < tariffList.getLength(); i++) {
                 Node node = tariffList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -67,10 +67,10 @@ public class DomTariffBuilder extends TariffBuilder {
     public Tariff buildTariffs(Element element) {
         Tariff tariff = element.getTagName().equals(UNLIMITED_TARIFF) ?
                 new UnlimTariff() : new LimitedTariff();
-        String data = element.getAttribute("tariff-id");
+        String data = element.getAttribute(TARIFF_ID);
         tariff.setTariffId(data);
-        data = element.getAttribute("title");
-        tariff.setTitle(data);
+        data = element.getAttribute(TITLE);
+        tariff.setTitle(data.equals("") ? TITLE_BY_DEFAULT : data);
         data = getElementTextContent(element, NAME);
         tariff.setTariffName(data);
         data = getElementTextContent(element, YEAR);
