@@ -1,6 +1,7 @@
 package by.makei.tariff.factory;
 
 import by.makei.tariff.builder.DomTariffBuilder;
+import by.makei.tariff.builder.SaxTariffBuilder;
 import by.makei.tariff.builder.TariffBuilder;
 import by.makei.tariff.exception.CustomException;
 import org.apache.logging.log4j.Level;
@@ -8,12 +9,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class TariffBuilderFactory {
-    private final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
     public static final TariffBuilderFactory instance = new TariffBuilderFactory();
+    private static final String REGEXP_VALIDATOR = "^\\w{3,4}$";
 
-    private enum TypeParser {
-        DOM, SAX, STAX, JAXB
-    }
+    private static final String DOM = "DOM";
+    private static final String SAX = "SAX";
+    private static final String STAX = "STAX";
+    private static final String JAXB = "JAXB";
+
 
     private TariffBuilderFactory(){}
 
@@ -22,17 +26,17 @@ public class TariffBuilderFactory {
     }
 
     public  TariffBuilder createBuilder(String tariffBuilderTypeName) throws CustomException {
-        if(tariffBuilderTypeName==null || !tariffBuilderTypeName.matches("^\\w{1,4}$")){
+        if(tariffBuilderTypeName==null || !tariffBuilderTypeName.matches(REGEXP_VALIDATOR)){
             logger.log(Level.ERROR,"tariffBuilderTypeName is null or invalid");
             throw new CustomException("tariffBuilderTypeName is null or invalid");
         }
-        TypeParser type = TypeParser.valueOf(tariffBuilderTypeName.toUpperCase());
+        String type = (tariffBuilderTypeName.toUpperCase());
         switch (type) {
             case DOM -> {
                 return new DomTariffBuilder();
             }
             case SAX -> {
-                return null;//new SaxTariffBuilder();
+                return new SaxTariffBuilder();
             }
             case STAX -> {
                 return null;//new StaxTariffBuilder();

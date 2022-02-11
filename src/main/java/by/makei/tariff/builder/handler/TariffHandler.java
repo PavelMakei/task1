@@ -1,9 +1,9 @@
 package by.makei.tariff.builder.handler;
 
 import by.makei.tariff.builder.TariffXmlTag;
-import by.makei.tariff.entity.LimitedTariff;
-import by.makei.tariff.entity.Tariff;
-import by.makei.tariff.entity.UnlimTariff;
+import by.makei.tariff.entity.LimitedAbstractTariff;
+import by.makei.tariff.entity.AbstractTariff;
+import by.makei.tariff.entity.UnlimAbstractTariff;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -18,9 +18,9 @@ public class TariffHandler extends DefaultHandler {
     private static final char UNDERSCORE = '_';
     private static final char HYPHEN = '-';
 
-    private Set<Tariff> tariffs;
+    private Set<AbstractTariff> tariffs;
     private EnumSet<TariffXmlTag> enumTariffSet;
-    private Tariff tariff;
+    private AbstractTariff tariff;
     private TariffXmlTag tariffTag;
 
 
@@ -34,7 +34,7 @@ public class TariffHandler extends DefaultHandler {
         String unlimitedTariffTag = UNLIMITED_TARIFF.getValue();
         String limitedTariffTag = LIMITED_TARIFF.getValue();
         if (unlimitedTariffTag.equals(qName) || limitedTariffTag.equals(qName)) {
-            tariff = unlimitedTariffTag.equals(qName) ? new UnlimTariff() : new LimitedTariff();
+            tariff = unlimitedTariffTag.equals(qName) ? new UnlimAbstractTariff() : new LimitedAbstractTariff();
             tariff.setTariffId(attributes.getValue(TARIFF_ID.getValue()));
             String optionalTitle = attributes.getValue(TITLE.getValue());
             tariff.setTitle(optionalTitle == null ? TITLE_BY_DEFAULT.getValue() : optionalTitle);
@@ -63,11 +63,11 @@ public class TariffHandler extends DefaultHandler {
                 case TARIFFING -> tariff.getParameters().setTariffing(data);
                 case TARIFF_CONNECTION_FEE -> tariff.getParameters().setConnectionPayment(data);
                 case UNLIMITED_TARIFF_PARAMETERS -> {
-                    UnlimTariff unlimitedTariff = (UnlimTariff) tariff;
+                    UnlimAbstractTariff unlimitedTariff = (UnlimAbstractTariff) tariff;
                     unlimitedTariff.setUnlimitedTariffParameters(data);
                 }
                 case LIMITED_TARIFF_PARAMETERS -> {
-                    LimitedTariff temporaryTariff = (LimitedTariff) tariff;
+                    LimitedAbstractTariff temporaryTariff = (LimitedAbstractTariff) tariff;
                     temporaryTariff.setLimitedTariffParameters(data);
                 }
             }
@@ -85,7 +85,7 @@ public class TariffHandler extends DefaultHandler {
     }
 
 
-    public Set<Tariff> getTariffs() {
+    public Set<AbstractTariff> getTariffs() {
         return tariffs;
     }
 

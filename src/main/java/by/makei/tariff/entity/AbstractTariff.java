@@ -3,7 +3,7 @@ package by.makei.tariff.entity;
 import java.time.Year;
 
 
-public abstract class Tariff {
+public abstract class AbstractTariff {
     private String tariffId;
     private String title;
     private String tariffName;
@@ -15,7 +15,7 @@ public abstract class Tariff {
     private double smsPrice;
 
 
-    public Tariff() {
+    public AbstractTariff() {
             callPrice = new CallPrice();
             parameters = new Parameters();
     }
@@ -97,7 +97,7 @@ public abstract class Tariff {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Tariff tariff = (Tariff) o;
+        AbstractTariff tariff = (AbstractTariff) o;
         return Double.compare(tariff.payroll, payroll) == 0
                 && Double.compare(tariff.smsPrice, smsPrice) == 0
                 && tariffId.equals( tariff.tariffId)
@@ -126,15 +126,17 @@ public abstract class Tariff {
 
     @Override
     public String toString() {
-        return "tariffId='" + tariffId + '\'' +
-                ", title='" + title + '\'' +
-                ", tariffName='" + tariffName + '\'' +
-                ", Year='" + year + '\'' +
-                ", operator='" + operator + '\'' +
-                ", payroll=" + payroll + " byn" +
-                ", parameters=" + parameters +
-                ", callPrice=" + callPrice +
-                ", smsPrice=" + smsPrice + " byn" +
-                '}';
+        final StringBuilder sb = new StringBuilder("AbstractTariff{");
+        sb.append("tariffId='").append(tariffId).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", tariffName='").append(tariffName).append('\'');
+        sb.append(", year=").append(year);
+        sb.append(", operator='").append(operator).append('\'');
+        sb.append(", payroll=").append(payroll);
+        sb.append(", parameters=").append(parameters);
+        sb.append(", callPrice=").append(callPrice);
+        sb.append(", smsPrice=").append(smsPrice);
+        sb.append('}');
+        return sb.toString();
     }
 }

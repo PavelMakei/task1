@@ -2,3 +2,5 @@
 /target/
 /.idea/
 /src/main/java/by/makei/tariff/Main.java
+/.idea/
+/logs/

@@ -56,10 +56,11 @@ public class CallPrice {
 
     @Override
     public String toString() {
-        return "CallPrice{" +
-                ", insideNetworkCall=" + insideNetworkCall +
-                ", outNetworkCall=" + outNetworkCall +
-                ", wiredCall=" + wiredCall +
-                '}';
+        final StringBuilder sb = new StringBuilder("CallPrice{");
+        sb.append("insideNetworkCall=").append(insideNetworkCall);
+        sb.append(", outNetworkCall=").append(outNetworkCall);
+        sb.append(", wiredCall=").append(wiredCall);
+        sb.append('}');
+        return sb.toString();
     }
 }

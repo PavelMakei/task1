@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DomTariffBuilderTest {
+class DomAbstractTariffBuilderTest {
     public DomTariffBuilder domTariffBuilder;
     public String fileName = "files/mobile_tariff.xml";
 

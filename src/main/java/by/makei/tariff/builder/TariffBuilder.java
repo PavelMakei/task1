@@ -1,10 +1,8 @@
 package by.makei.tariff.builder;
 
-import by.makei.tariff.entity.Tariff;
+import by.makei.tariff.entity.AbstractTariff;
 import by.makei.tariff.util.CustomFileUtil;
-import by.makei.tariff.util.impl.CustomFileUtilImpl;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,18 +30,18 @@ public abstract class TariffBuilder {
     public static final String TITLE_BY_DEFAULT = "title";
 
 
-    protected Set<Tariff> tariffSet;
+    protected Set<AbstractTariff> tariffSet;
     protected CustomFileUtil customFileUtil;
 
     protected TariffBuilder() {
         tariffSet = new HashSet<>();
     }
 
-    protected TariffBuilder(Set<Tariff> tariffs) {
+    protected TariffBuilder(Set<AbstractTariff> tariffs) {
         this.tariffSet = new HashSet<>(tariffs);
     }
 
-    public Set<Tariff> getTariffs() {
+    public Set<AbstractTariff> getTariffs() {
         return new HashSet<>(tariffSet);
     }
 

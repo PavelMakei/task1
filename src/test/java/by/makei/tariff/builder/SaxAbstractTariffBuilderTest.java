@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SaxTariffBuilderTest {
+class SaxAbstractTariffBuilderTest {
 
     public SaxTariffBuilder saxTariffBuilder;
     public String fileName = "files/mobile_tariff.xml";

@@ -1,15 +1,13 @@
 package by.makei.tariff.entity;
 
 
-import by.makei.tariff.exception.CustomException;
-
-import java.time.Year;
 import java.util.Objects;
 
-public class UnlimTariff extends Tariff {
+public class UnlimAbstractTariff extends AbstractTariff {
     private String unlimitedTariffParameters;
 
-    public UnlimTariff() {}
+    public UnlimAbstractTariff() {
+    }
 
     public String getUnlimitedTariffParameters() {
         return unlimitedTariffParameters;
@@ -24,21 +22,22 @@ public class UnlimTariff extends Tariff {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        UnlimTariff that = (UnlimTariff) o;
+        UnlimAbstractTariff that = (UnlimAbstractTariff) o;
         return Objects.equals(unlimitedTariffParameters, that.unlimitedTariffParameters);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), unlimitedTariffParameters.hashCode());
+        return super.hashCode() + unlimitedTariffParameters.hashCode();
     }
 
     @Override
     public String toString() {
-        return "LimitedTariff{"
-                + super.toString()
-                + "actionDiscount="
-                + unlimitedTariffParameters
-                +" %}";
+        final StringBuilder sb = new StringBuilder("UnlimAbstractTariff{");
+        sb.append(super.toString());
+        sb.append("unlimitedTariffParameters='")
+                .append(unlimitedTariffParameters).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

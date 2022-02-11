@@ -56,10 +56,11 @@ public class Parameters {
 
     @Override
     public String toString() {
-        return "Parameters{" +
-                "favoriteNumber='" + favoriteNumber + '\'' +
-                ", tariffing='" + tariffing + '\'' +
-                ", connectionPayment='" + connectionPayment + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("Parameters{");
+        sb.append("favoriteNumber='").append(favoriteNumber).append('\'');
+        sb.append(", tariffing='").append(tariffing).append('\'');
+        sb.append(", connectionPayment='").append(connectionPayment).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
