@@ -15,7 +15,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
 
-public class SaxTariffBuilder extends TariffBuilder{
+public class SaxTariffBuilder extends AbstractTariffBuilder {
     private static final Logger logger = LogManager.getLogger();
     private XMLReader reader;
     private SAXParserFactory factory = SAXParserFactory.newInstance();

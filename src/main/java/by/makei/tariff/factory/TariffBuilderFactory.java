@@ -2,7 +2,8 @@ package by.makei.tariff.factory;
 
 import by.makei.tariff.builder.DomTariffBuilder;
 import by.makei.tariff.builder.SaxTariffBuilder;
-import by.makei.tariff.builder.TariffBuilder;
+import by.makei.tariff.builder.StaxTariffBuilder;
+import by.makei.tariff.builder.AbstractTariffBuilder;
 import by.makei.tariff.exception.CustomException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +26,7 @@ public class TariffBuilderFactory {
         return instance;
     }
 
-    public  TariffBuilder createBuilder(String tariffBuilderTypeName) throws CustomException {
+    public AbstractTariffBuilder createBuilder(String tariffBuilderTypeName) throws CustomException {
         if(tariffBuilderTypeName==null || !tariffBuilderTypeName.matches(REGEXP_VALIDATOR)){
             logger.log(Level.ERROR,"tariffBuilderTypeName is null or invalid");
             throw new CustomException("tariffBuilderTypeName is null or invalid");
@@ -39,15 +40,15 @@ public class TariffBuilderFactory {
                 return new SaxTariffBuilder();
             }
             case STAX -> {
-                return null;//new StaxTariffBuilder();
+                return new StaxTariffBuilder();
             }
             case JAXB -> {
-                return null;//new StaxTariffBuilder();
+                return new StaxTariffBuilder();
             }
 
             default -> {
-                logger.log(Level.ERROR,"Wrong builder type: " + type);
-                throw new CustomException("Wrong builder type: " + type);
+                logger.log(Level.ERROR,"Wrong builder type: {} or type is unsupported",  type);
+                throw new CustomException("Wrong builder type: " + type + " or type is unsupported");
             }
         }
     }

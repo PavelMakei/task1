@@ -1,9 +1,9 @@
 package by.makei.tariff.entity;
 
-public class LimitedAbstractTariff extends AbstractTariff {
+public class LimitedTariff extends AbstractTariff {
     private String limitedTariffParameters;
 
-    public LimitedAbstractTariff() {
+    public LimitedTariff() {
         super();
     }
 
@@ -20,7 +20,7 @@ public class LimitedAbstractTariff extends AbstractTariff {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        LimitedAbstractTariff that = (LimitedAbstractTariff) o;
+        LimitedTariff that = (LimitedTariff) o;
         return limitedTariffParameters.equals(that.limitedTariffParameters);
     }
 
@@ -31,7 +31,7 @@ public class LimitedAbstractTariff extends AbstractTariff {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("LimitedAbstractTariff{");
+        final StringBuilder sb = new StringBuilder("LimitedTariff{");
         sb.append(super.toString());
         sb.append("limitedTariffParameters='").append(limitedTariffParameters).append('\'');
         sb.append('}');

@@ -3,11 +3,10 @@ package by.makei.tariff.entity;
 
 import java.util.Objects;
 
-public class UnlimAbstractTariff extends AbstractTariff {
+public class UnlimTariff extends AbstractTariff {
     private String unlimitedTariffParameters;
 
-    public UnlimAbstractTariff() {
-    }
+    public UnlimTariff() {}
 
     public String getUnlimitedTariffParameters() {
         return unlimitedTariffParameters;
@@ -22,7 +21,7 @@ public class UnlimAbstractTariff extends AbstractTariff {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        UnlimAbstractTariff that = (UnlimAbstractTariff) o;
+        UnlimTariff that = (UnlimTariff) o;
         return Objects.equals(unlimitedTariffParameters, that.unlimitedTariffParameters);
     }
 
@@ -33,7 +32,7 @@ public class UnlimAbstractTariff extends AbstractTariff {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("UnlimAbstractTariff{");
+        final StringBuilder sb = new StringBuilder("UnlimTariff{");
         sb.append(super.toString());
         sb.append("unlimitedTariffParameters='")
                 .append(unlimitedTariffParameters).append('\'');

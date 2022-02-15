@@ -1,9 +1,9 @@
 package by.makei.tariff.builder.handler;
 
 import by.makei.tariff.builder.TariffXmlTag;
-import by.makei.tariff.entity.LimitedAbstractTariff;
+import by.makei.tariff.entity.LimitedTariff;
 import by.makei.tariff.entity.AbstractTariff;
-import by.makei.tariff.entity.UnlimAbstractTariff;
+import by.makei.tariff.entity.UnlimTariff;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -34,7 +34,7 @@ public class TariffHandler extends DefaultHandler {
         String unlimitedTariffTag = UNLIMITED_TARIFF.getValue();
         String limitedTariffTag = LIMITED_TARIFF.getValue();
         if (unlimitedTariffTag.equals(qName) || limitedTariffTag.equals(qName)) {
-            tariff = unlimitedTariffTag.equals(qName) ? new UnlimAbstractTariff() : new LimitedAbstractTariff();
+            tariff = unlimitedTariffTag.equals(qName) ? new UnlimTariff() : new LimitedTariff();
             tariff.setTariffId(attributes.getValue(TARIFF_ID.getValue()));
             String optionalTitle = attributes.getValue(TITLE.getValue());
             tariff.setTitle(optionalTitle == null ? TITLE_BY_DEFAULT.getValue() : optionalTitle);
@@ -63,11 +63,11 @@ public class TariffHandler extends DefaultHandler {
                 case TARIFFING -> tariff.getParameters().setTariffing(data);
                 case TARIFF_CONNECTION_FEE -> tariff.getParameters().setConnectionPayment(data);
                 case UNLIMITED_TARIFF_PARAMETERS -> {
-                    UnlimAbstractTariff unlimitedTariff = (UnlimAbstractTariff) tariff;
+                    UnlimTariff unlimitedTariff = (UnlimTariff) tariff;
                     unlimitedTariff.setUnlimitedTariffParameters(data);
                 }
                 case LIMITED_TARIFF_PARAMETERS -> {
-                    LimitedAbstractTariff temporaryTariff = (LimitedAbstractTariff) tariff;
+                    LimitedTariff temporaryTariff = (LimitedTariff) tariff;
                     temporaryTariff.setLimitedTariffParameters(data);
                 }
             }

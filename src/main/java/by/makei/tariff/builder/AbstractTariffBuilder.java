@@ -1,12 +1,16 @@
 package by.makei.tariff.builder;
 
 import by.makei.tariff.entity.AbstractTariff;
+import by.makei.tariff.exception.CustomException;
 import by.makei.tariff.util.CustomFileUtil;
 
+
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class TariffBuilder {
+public abstract class AbstractTariffBuilder {
     public static final String TARIFFS = "tariffs";
     public static final String TARIFF_ID = "tariff-id";
     public static final String NAME = "name";
@@ -33,11 +37,11 @@ public abstract class TariffBuilder {
     protected Set<AbstractTariff> tariffSet;
     protected CustomFileUtil customFileUtil;
 
-    protected TariffBuilder() {
+    protected AbstractTariffBuilder() {
         tariffSet = new HashSet<>();
     }
 
-    protected TariffBuilder(Set<AbstractTariff> tariffs) {
+    protected AbstractTariffBuilder(Set<AbstractTariff> tariffs) {
         this.tariffSet = new HashSet<>(tariffs);
     }
 
@@ -45,6 +49,6 @@ public abstract class TariffBuilder {
         return new HashSet<>(tariffSet);
     }
 
-    public abstract void buildTariffs(String fileName);
+    public abstract void buildTariffs(String fileName) throws CustomException, JAXBException, FileNotFoundException;
 }
 

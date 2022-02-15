@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.time.Year;
 
 
-public class DomTariffBuilder extends TariffBuilder {
+public class DomTariffBuilder extends AbstractTariffBuilder {
 
     private static final Logger logger = LogManager.getLogger();
     private DocumentBuilderFactory factory;
@@ -66,7 +66,7 @@ public class DomTariffBuilder extends TariffBuilder {
 
     public AbstractTariff buildTariffs(Element element) {
         AbstractTariff tariff = element.getTagName().equals(UNLIMITED_TARIFF) ?
-                new UnlimAbstractTariff() : new LimitedAbstractTariff();
+                new UnlimTariff() : new LimitedTariff();
         String data = element.getAttribute(TARIFF_ID);
         tariff.setTariffId(data);
         data = element.getAttribute(TITLE);
@@ -98,12 +98,12 @@ public class DomTariffBuilder extends TariffBuilder {
         data = getElementTextContent(element, TARIFF_CONNECTION_FEE);
         parameters.setConnectionPayment(data);
 
-        if (tariff instanceof UnlimAbstractTariff constantTariff) {
+        if (tariff instanceof UnlimTariff constantTariff) {
             data = getElementTextContent(element, UNLIMITED_TARIFF_PARAMETERS);
             constantTariff.setUnlimitedTariffParameters(data);
         } else {
             data = getElementTextContent(element, LIMITED_TARIFF_PARAMETERS);
-            LimitedAbstractTariff temporaryTariff = (LimitedAbstractTariff) tariff;
+            LimitedTariff temporaryTariff = (LimitedTariff) tariff;
             temporaryTariff.setLimitedTariffParameters(data);
         }
         return tariff;

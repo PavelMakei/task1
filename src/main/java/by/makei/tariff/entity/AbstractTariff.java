@@ -4,8 +4,11 @@ import java.time.Year;
 
 
 public abstract class AbstractTariff {
+    //@XmlAttribute(name = "tariff-id")
     private String tariffId;
+    //@XmlAttribute(name = "title")
     private String title;
+    //@XmlElement(name = "name")
     private String tariffName;
     private Year year;
     private String operator;
@@ -16,8 +19,8 @@ public abstract class AbstractTariff {
 
 
     public AbstractTariff() {
-            callPrice = new CallPrice();
-            parameters = new Parameters();
+        callPrice = new CallPrice();
+        parameters = new Parameters();
     }
 
     public String getTariffId() {
@@ -100,10 +103,10 @@ public abstract class AbstractTariff {
         AbstractTariff tariff = (AbstractTariff) o;
         return Double.compare(tariff.payroll, payroll) == 0
                 && Double.compare(tariff.smsPrice, smsPrice) == 0
-                && tariffId.equals( tariff.tariffId)
-                && title.equals( tariff.title)
-                && tariffName.equals( tariff.tariffName)
-                && operator.equals( tariff.operator)
+                && tariffId.equals(tariff.tariffId)
+                && title.equals(tariff.title)
+                && tariffName.equals(tariff.tariffName)
+                && operator.equals(tariff.operator)
                 && parameters.equals(tariff.parameters)
                 && callPrice.equals(tariff.callPrice);
     }
