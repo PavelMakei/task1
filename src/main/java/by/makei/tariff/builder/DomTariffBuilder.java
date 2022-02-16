@@ -27,6 +27,7 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
 
     @Override
     public void buildTariffs(String fileName) {
+        Math.random();
         customFileUtil = CustomFileUtilImpl.getInstance();
         File file = customFileUtil.getFileFromStringForResourcesPackage(fileName);
 

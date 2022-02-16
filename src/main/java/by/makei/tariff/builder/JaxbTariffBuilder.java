@@ -22,6 +22,7 @@ import java.util.List;
 
 public class JaxbTariffBuilder extends AbstractTariffBuilder {
     public static final Logger logger = LogManager.getLogger();
+    //TODO make it works
 
     @Override
     public void buildTariffs(String fileName) throws CustomException, JAXBException {
