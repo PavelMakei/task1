@@ -47,7 +47,6 @@ public class JaxbTariffBuilder extends AbstractTariffBuilder {
         Object unmarshal = unmarshaller.unmarshal(xmlContentBytes);
         Object xmlObject = Tariffs.class.cast(unmarshal);
         logger.log(Level.ERROR, xmlObject);
-
     }
 
     @XmlRootElement(namespace = "http://www.itacademy.by/makei/tariffs", name = "tariffs")
