@@ -27,7 +27,6 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
 
     @Override
     public void buildTariffs(String fileName) {
-        Math.random();
         customFileUtil = CustomFileUtilImpl.getInstance();
         File file = customFileUtil.getFileFromStringForResourcesPackage(fileName);
 
@@ -110,7 +109,7 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
         return tariff;
     }
 
-    private static String getElementTextContent(Element element, String elementName) {
+    private String getElementTextContent(Element element, String elementName) {
         NodeList nList = element.getElementsByTagName(elementName);
         Node node = nList.item(0);
         return node.getTextContent();

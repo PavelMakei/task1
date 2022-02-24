@@ -1,10 +1,8 @@
 package by.makei.tariff.entity;
 
-import java.util.Objects;
 
 public class CallPrice {
 
-   // private final String callPriceId;
     private double insideNetworkCall;
     private double outNetworkCall;
     private double wiredCall;
@@ -46,12 +44,25 @@ public class CallPrice {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         CallPrice callPrice = (CallPrice) o;
-        return Double.compare(callPrice.insideNetworkCall, insideNetworkCall) == 0 && Double.compare(callPrice.outNetworkCall, outNetworkCall) == 0 && Double.compare(callPrice.wiredCall, wiredCall) == 0;}
+
+        if (Double.compare(callPrice.insideNetworkCall, insideNetworkCall) != 0) return false;
+        if (Double.compare(callPrice.outNetworkCall, outNetworkCall) != 0) return false;
+        return Double.compare(callPrice.wiredCall, wiredCall) == 0;
+    }
 
     @Override
     public int hashCode() {
-        return (int) (insideNetworkCall + outNetworkCall + wiredCall);
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(insideNetworkCall);
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(outNetworkCall);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(wiredCall);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     @Override
