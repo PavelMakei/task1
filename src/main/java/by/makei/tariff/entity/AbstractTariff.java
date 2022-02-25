@@ -4,6 +4,7 @@ import java.time.Year;
 
 
 public abstract class AbstractTariff {
+    private String type;
     //@XmlAttribute(name = "tariff-id")
     private String tariffId;
     //@XmlAttribute(name = "title")
@@ -18,10 +19,13 @@ public abstract class AbstractTariff {
     private double smsPrice;
 
 
-    public AbstractTariff() {
+    public AbstractTariff(String type) {
         callPrice = new CallPrice();
         parameters = new Parameters();
+        this.type = type;
     }
+
+    public String getType() {return type;}
 
     public String getTariffId() {
         return tariffId;
@@ -141,5 +145,37 @@ public abstract class AbstractTariff {
         sb.append(", smsPrice=").append(smsPrice);
         sb.append('}');
         return sb.toString();
+
     }
+
+    public abstract class AbstractBuilder {
+
+        AbstractBuilder() {
+            // private constructor
+        }
+
+        public abstract AbstractTariff.AbstractBuilder setTariffId(String tariffId);
+
+        public  abstract AbstractTariff.AbstractBuilder setTitle(String title);
+
+        public  abstract AbstractTariff.AbstractBuilder setTariffName(String tariffName);
+
+        public abstract AbstractTariff.AbstractBuilder setYear(Year year);
+
+        public  abstract AbstractTariff.AbstractBuilder setOperator(String operator);
+
+        public  abstract AbstractTariff.AbstractBuilder setPayroll(double payroll);
+
+        public  abstract AbstractTariff.AbstractBuilder setParameters(Parameters parameters);
+
+        public  abstract AbstractTariff.AbstractBuilder setCallPrice(CallPrice callPrice);
+
+        public  abstract AbstractTariff.AbstractBuilder setSmsPrice(double smsPrice);
+
+
+        public abstract AbstractTariff build();
+
+    }
+
+
 }

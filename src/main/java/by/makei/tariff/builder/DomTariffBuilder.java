@@ -65,8 +65,12 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
     }
 
     public AbstractTariff buildTariffs(Element element) {
-        AbstractTariff tariff = element.getTagName().equals(UNLIMITED_TARIFF) ?
-                new UnlimTariff() : new LimitedTariff();
+        AbstractTariff.AbstractBuilder tariff;
+        if(element.getTagName().equals(UNLIMITED_TARIFF)) {
+            tariff = UnlimTariff.newBuilder();
+        }else {
+            tariff = LimitedTariff.newBuilder();
+        }
         String data = element.getAttribute(TARIFF_ID);
         tariff.setTariffId(data);
         data = element.getAttribute(TITLE);
@@ -80,7 +84,7 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
         data = getElementTextContent(element, PAYROLL);
         tariff.setPayroll(Double.valueOf(data));
 
-        CallPrice prices = tariff.getCallPrice();
+        CallPrice prices = tariff.build().getCallPrice();
         data = getElementTextContent(element, INSIDE_NETWORK_CALLS);
         prices.setInsideNetworkCall(Double.valueOf(data));
         data = getElementTextContent(element, OTHER_NETWORK_CALLS);
@@ -90,7 +94,7 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
         data = getElementTextContent(element, SMS_PRICE);
         tariff.setSmsPrice(Double.valueOf(data));
 
-        Parameters parameters = tariff.getParameters();
+        Parameters parameters = tariff.build().getParameters();
         data = getElementTextContent(element, HAVE_A_FAVORITE_NUMBER);
         parameters.setFavoriteNumber(data);
         data = getElementTextContent(element, TARIFFING);
@@ -98,15 +102,16 @@ public class DomTariffBuilder extends AbstractTariffBuilder {
         data = getElementTextContent(element, TARIFF_CONNECTION_FEE);
         parameters.setConnectionPayment(data);
 
-        if (tariff instanceof UnlimTariff constantTariff) {
+        if (tariff.build().getType().equals("unlimited")) {
+            UnlimTariff unlimTariff = (UnlimTariff) tariff.build();
             data = getElementTextContent(element, UNLIMITED_TARIFF_PARAMETERS);
-            constantTariff.setUnlimitedTariffParameters(data);
+            unlimTariff.setUnlimitedTariffParameters(data);
         } else {
             data = getElementTextContent(element, LIMITED_TARIFF_PARAMETERS);
-            LimitedTariff temporaryTariff = (LimitedTariff) tariff;
-            temporaryTariff.setLimitedTariffParameters(data);
+            LimitedTariff limitedTariff = (LimitedTariff) tariff.build();
+            limitedTariff.setLimitedTariffParameters(data);
         }
-        return tariff;
+        return tariff.build();
     }
 
     private String getElementTextContent(Element element, String elementName) {

@@ -71,7 +71,6 @@ public class StaxTariffBuilder extends AbstractTariffBuilder {
                         return tariff;
                     }
                 }
-                default -> logger.log(Level.WARN, "Can't be reached");
             }
         }
         logger.log(Level.ERROR, "Parsing error. Unknown element in xml file");
